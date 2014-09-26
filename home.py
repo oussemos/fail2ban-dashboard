@@ -59,7 +59,27 @@ def disable(s=None):
     cp.write(configfile)
   f = os.popen('service fail2ban restart')
   services = cp.sections()
-  return render_template(config())
+  return render_template('config.html', cp = cp, services = services)
+  
+##############################
+# Banned IP                  #
+##############################
+
+@app.route('/banned', methods=['GET', 'POST'])
+def banned():
+  f = os.popen("cat /var/log/fail2ban.log | grep Ban | awk '{print $7}'")
+  banned = f.read()
+  
+  
+  theFile = open('/var/log/fail2ban.log','r')
+  FILE = theFile.readlines()
+  theFile.close()
+  printList = []
+  for line in FILE:
+    if ('Ban' in line):
+      printList.append(line)
+  return render_template('banned.html', printList = printList)  
+  
   
 ##############################
 # App launcher               #
