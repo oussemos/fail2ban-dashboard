@@ -1,5 +1,7 @@
 from flask import Flask, render_template
 import os
+import sys
+import ConfigParser
 app = Flask(__name__)
 
 #############################
@@ -32,7 +34,36 @@ def stop():
 
 @app.route('/config', methods=['GET','POST'])
 def config():
-  return null
+  cp= ConfigParser.RawConfigParser()
+  cp.read( r"/etc/fail2ban/jail.conf" )
+  services = cp.sections()
+  return render_template('config.html', cp = cp, services = services)
+  
+@app.route('/enable/<s>', methods=['GET','POST'])  
+def enable(s=None):
+  cp= ConfigParser.RawConfigParser()
+  cp.read(r'/etc/fail2ban/jail.conf')
+  cp.set(s, 'enabled', 'true')
+  with open('/etc/fail2ban/jail.conf', 'w') as configfile:
+    cp.write(configfile)
+  f = os.popen('service fail2ban restart')
+  services = cp.sections()
+  return render_template('config.html', cp = cp, services = services)
+  
+@app.route('/disable/<s>', methods=['GET','POST'])  
+def disable(s=None):
+  cp= ConfigParser.RawConfigParser()
+  cp.read(r'/etc/fail2ban/jail.conf')
+  cp.set(s, 'enabled', 'false')
+  with open('/etc/fail2ban/jail.conf', 'w') as configfile:
+    cp.write(configfile)
+  f = os.popen('service fail2ban restart')
+  services = cp.sections()
+  return render_template(config())
+  
+##############################
+# App launcher               #
+############################## 
 
 if __name__ == '__main__':
   app.debug = True
