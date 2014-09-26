@@ -69,8 +69,6 @@ def disable(s=None):
 def banned():
   f = os.popen("cat /var/log/fail2ban.log | grep Ban | awk '{print $7}'")
   banned = f.read()
-  
-  
   theFile = open('/var/log/fail2ban.log','r')
   FILE = theFile.readlines()
   theFile.close()
