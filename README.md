@@ -25,7 +25,7 @@ Fail2ban web dashboard written with Flask framework
 
 5. Run the development server:
   ```
-  $ python app.py
+  $ python home.py
   ```
 
 6. Navigate to [http://localhost:5000](http://localhost:5000)
@@ -37,13 +37,13 @@ Fail2ban web dashboard written with Flask framework
 ### Screenshots
 
 Home:
-![Home](docs/screenshots/home.png)
+(docs/screenshots/home.png)
 
 Config:
-![Config](docs/screenshots/config.png)
+(docs/screenshots/config.png)
 
 Banned IP:
-![Banned IP](docs/screenshots/banned.png)
+(docs/screenshots/banned.png)
 
 ### Author
 
