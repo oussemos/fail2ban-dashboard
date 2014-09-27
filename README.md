@@ -36,14 +36,11 @@ Fail2ban web dashboard written with Flask framework
 
 ### Screenshots
 
-Home:
-(docs/screenshots/home.png)
+![Home](docs/screenshots/home.png)
 
-Config:
-(docs/screenshots/config.png)
+![Config](docs/screenshots/config.png)
 
-Banned IP:
-(docs/screenshots/banned.png)
+![Banned IP](docs/screenshots/banned.png)
 
 ### Author
 
