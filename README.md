@@ -34,6 +34,11 @@ Fail2ban web dashboard written with Flask framework
 
 * The application is still under development, don't hesitate to give advice, open an <a href="https://github.com/oussemos/fail2ban-dashboard/issues">issue</a> or contribute.
 
+### ToDO List
+
+* Using AJAX to get informations
+
+
 ### System
 
 * This app was developed and tested under Debian Wheezy
