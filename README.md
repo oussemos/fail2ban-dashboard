@@ -58,7 +58,7 @@ Fail2ban web dashboard written with Flask framework
 
 ### License
 
-Open source licensed under the MIT license (see LICENSE file for details).
+Open source licensed under the MIT license.
 
 
 
