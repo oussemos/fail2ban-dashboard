@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 import os
 import sys
 import ConfigParser
@@ -19,14 +19,14 @@ def start():
   s = os.popen('service fail2ban start')
   f = os.popen('service fail2ban status')
   status = f.read()
-  return render_template('index.html', status = status)
-  
-@app.route('/stop', methods=['GET', 'POST'])
+  return redirect("/", code=302)
+
+@app.route('/stop', methods=['GET', 'POST'])  
 def stop():
   s = os.popen('service fail2ban stop')
   f = os.popen('service fail2ban status')
   status = f.read()
-  return render_template('index.html', status = status)
+  return redirect("/", code=302)
   
 ##############################
 # Config page                #
@@ -48,7 +48,7 @@ def enable(s=None):
     cp.write(configfile)
   f = os.popen('service fail2ban restart')
   services = cp.sections()
-  return render_template('config.html', cp = cp, services = services)
+  return redirect("/config", code=302)
   
 @app.route('/disable/<s>', methods=['GET','POST'])  
 def disable(s=None):
@@ -59,7 +59,7 @@ def disable(s=None):
     cp.write(configfile)
   f = os.popen('service fail2ban restart')
   services = cp.sections()
-  return render_template('config.html', cp = cp, services = services)
+  return redirect("/config", code=302)
   
 ##############################
 # Banned IP                  #
@@ -69,6 +69,8 @@ def disable(s=None):
 def banned():
   f = os.popen("cat /var/log/fail2ban.log | grep Ban | awk '{print $7}'")
   banned = f.read()
+  
+  
   theFile = open('/var/log/fail2ban.log','r')
   FILE = theFile.readlines()
   theFile.close()
