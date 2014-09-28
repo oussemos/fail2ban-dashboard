@@ -36,7 +36,8 @@ Fail2ban web dashboard written with Flask framework
 
 ### ToDO List
 
-* Using AJAX to get informations
+* Using AJAX to get informations and updates
+* Possibility to modify filters 
 
 
 ### System
