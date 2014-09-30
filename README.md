@@ -30,6 +30,15 @@ Fail2ban web dashboard written with Flask framework
 
 6. Navigate to [http://localhost:5000](http://localhost:5000)
 
+### Deployment 
+
+For more stability, you can deploy the application with Gunicorn.
+
+  ```
+  $ pip install gunicorn
+  $ gunicorn home:app -p fail2ban_dashboard.pid -b 0.0.0.0:5000 -D
+  ```
+
 ### Issues
 
 * The application is still under development, don't hesitate to give advice, open an <a href="https://github.com/oussemos/fail2ban-dashboard/issues">issue</a> or contribute.
