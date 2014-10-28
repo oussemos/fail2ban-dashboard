@@ -62,6 +62,13 @@ For more stability, you can deploy the application with Gunicorn.
 
 ![Banned IP](docs/screenshots/banned.png)
 
+### Changelog
+
+(28-10-2014)
+
+* Filters configuration
+* Authentification with password
+
 ### Author
 
 <a href="http://oussema.cherni.tn">Oussema Cherni</a> (@<a href="http://twitter.com/oussemos">oussemos</a> on Twitter)
