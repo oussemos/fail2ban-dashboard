@@ -43,11 +43,6 @@ For more stability, you can deploy the application with Gunicorn.
 
 * The application is still under development, don't hesitate to give advice, open an <a href="https://github.com/oussemos/fail2ban-dashboard/issues">issue</a> or contribute.
 
-### ToDO List
-
-* Using AJAX to get informations and updates
-* Possibility to modify filters 
-
 
 ### System
 
@@ -61,6 +56,13 @@ For more stability, you can deploy the application with Gunicorn.
 ![Config](docs/screenshots/config.png)
 
 ![Banned IP](docs/screenshots/banned.png)
+
+### Changelog
+
+(28-10-2014) : new features
+
+* Filters configuration
+* Authentification with password
 
 ### Author
 
