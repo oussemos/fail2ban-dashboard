@@ -1,14 +1,29 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, request
+from flask.ext.basicauth import BasicAuth
 import os
 import sys
 import ConfigParser
 app = Flask(__name__)
 
 #############################
+# Password Protection       #
+#############################
+
+app.config['BASIC_AUTH_USERNAME'] = 'ouss'
+app.config['BASIC_AUTH_PASSWORD'] = 'pass'
+
+basic_auth = BasicAuth(app)
+
+@app.route('/')
+@basic_auth.required
+def secret_view():
+    return redirect('/home', code=302)
+
+#############################
 # Home page / start / stop  #
 #############################
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/home', methods=['GET', 'POST'])
 def home():
   f = os.popen('service fail2ban status')
   status = f.read()
@@ -61,6 +76,39 @@ def disable(s=None):
   services = cp.sections()
   return redirect("/config", code=302)
   
+  
+##############################
+# Filter page                #
+##############################
+
+@app.route('/display/<s>', methods=['GET','POST'])  
+def filter(s):
+  try:  
+    filt = s
+    cp= ConfigParser.RawConfigParser()
+    file = "/etc/fail2ban/filter.d/"+filt+".conf"
+    h = open(file,'r')
+    f = h.read()
+  except IOError:
+    return render_template('filter.html', f = "there is a problem with this filter")
+  return render_template('filter.html', f = f, service = filt)
+
+  
+@app.route('/save/<s>', methods=['GET','POST'])
+def save_filter(s):
+  try:
+    f = request.form['filter']
+    filt = s
+    file = "/etc/fail2ban/filter.d/"+filt+".conf"
+    h = open(file,'w')
+    h.write(f)
+    h.close()
+  except IOError:
+    return render_template('filter.html', f = "there is a problem with this filter")
+  return redirect('/config', code=302)	
+  
+  
+  
 ##############################
 # Banned IP                  #
 ##############################
@@ -87,5 +135,5 @@ def banned():
 
 if __name__ == '__main__':
   app.debug = True
-  app.run(host='0.0.0.0')
+  app.run(host='0.0.0.0', port=4040)
 

@@ -34,7 +34,7 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
+            <li><a href="/home">Home</a></li>
             <li class="active"><a href="/config">Config</a></li>
 			<li><a href="/banned">Banned IP</a></li>
           </ul>
@@ -48,7 +48,7 @@
         {% for s in services %}
 			{% if cp.get(s,'enabled') == 'true' %}
 		<div class="panel panel-success">
-			<div class="panel-heading">{{s}}</div>
+			<div class="panel-heading"><a href="display/{{s}}">{{s}}</a></div>
 				<div class="panel-body">
 					<a class="btn btn-danger btn-large" href="disable/{{ s }}">disable</a>
 				</div>
@@ -57,7 +57,7 @@
 			
 			{% if cp.get(s,'enabled') == 'false' %}
 			<div class="panel panel-danger">
-				<div class="panel-heading">{{s}}</div>
+				<div class="panel-heading"><a href="display/{{s}}">{{s}}</a></div>
 				<div class="panel-body">
 					<a class="btn btn-success btn-large" href="enable/{{ s }}">enable</a>
 				</div>
