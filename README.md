@@ -59,7 +59,7 @@ For more stability, you can deploy the application with Gunicorn.
 
 ### Changelog
 
-(28-10-2014)
+(28-10-2014) : new features
 
 * Filters configuration
 * Authentification with password
