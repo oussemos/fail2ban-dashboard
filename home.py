@@ -24,6 +24,7 @@ def secret_view():
 #############################
 
 @app.route('/home', methods=['GET', 'POST'])
+@basic_auth.required
 def home():
   f = os.popen('service fail2ban status')
   status = f.read()
@@ -48,6 +49,7 @@ def stop():
 ##############################
 
 @app.route('/config', methods=['GET','POST'])
+@basic_auth.required
 def config():
   cp= ConfigParser.RawConfigParser()
   cp.read( r"/etc/fail2ban/jail.conf" )
@@ -82,6 +84,7 @@ def disable(s=None):
 ##############################
 
 @app.route('/display/<s>', methods=['GET','POST'])  
+@basic_auth.required
 def filter(s):
   try:  
     filt = s
@@ -114,6 +117,7 @@ def save_filter(s):
 ##############################
 
 @app.route('/banned', methods=['GET', 'POST'])
+@basic_auth.required
 def banned():
   f = os.popen("cat /var/log/fail2ban.log | grep Ban | awk '{print $7}'")
   banned = f.read()
