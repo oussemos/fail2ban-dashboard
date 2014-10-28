@@ -43,11 +43,6 @@ For more stability, you can deploy the application with Gunicorn.
 
 * The application is still under development, don't hesitate to give advice, open an <a href="https://github.com/oussemos/fail2ban-dashboard/issues">issue</a> or contribute.
 
-### ToDO List
-
-* Using AJAX to get informations and updates
-* Possibility to modify filters 
-
 
 ### System
 
