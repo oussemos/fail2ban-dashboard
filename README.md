@@ -1,5 +1,6 @@
 fail2ban-dashboard
 ==================
+[![Build Status](https://travis-ci.org/oussemos/fail2ban-dashboard.svg?branch=master)](https://travis-ci.org/oussemos/fail2ban-dashboard)
 
 Fail2ban web dashboard written with Flask framework
 
