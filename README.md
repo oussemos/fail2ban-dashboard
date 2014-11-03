@@ -31,6 +31,10 @@ Fail2ban web dashboard written with Flask framework
 
 6. Navigate to [http://localhost:5000](http://localhost:5000)
 
+login: ouss
+password: pass
+
+
 ### Deployment 
 
 For more stability, you can deploy the application with Gunicorn.
