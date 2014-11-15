@@ -68,7 +68,7 @@ For more stability, you can deploy the application with Gunicorn.
 
 * Filters configuration
 * Authentification with password
-* 
+
 ### Bonus
 
 (15-11-2014)
