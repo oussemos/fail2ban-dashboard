@@ -68,6 +68,15 @@ For more stability, you can deploy the application with Gunicorn.
 
 * Filters configuration
 * Authentification with password
+* 
+### Bonus
+
+(15-11-2014)
+
+* A Docker fail2ban-dashboard preconfigured container based on Debian Wheezy
+```
+$ docker pull oussemos/fail2ban-dashboard
+```
 
 ### Author
 
