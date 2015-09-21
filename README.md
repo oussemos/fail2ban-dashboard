@@ -69,6 +69,11 @@ For more stability, you can deploy the application with Gunicorn.
 * Filters configuration
 * Authentification with password
 
+(21-09-2015)
+
+* Fail2ban-dashboard is now compatible with init and systemd, Thanks to @<a href="https://github.com/nocternology">nocternology</a>
+
+
 ### Bonus
 
 (15-11-2014)
