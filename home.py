@@ -23,27 +23,33 @@ def secret_view():
 # Home page / start / stop  #
 #############################
 
+def fail2banStatus():
+  f = os.popen('service fail2ban status')
+  status = f.read()
+  if ("inactive" in status or "not running" in status):
+    return "fail2ban is not running"
+  elif ("active" in status or "is running" in status):
+    return "fail2ban is running"
+
+
 @app.route('/home', methods=['GET', 'POST'])
 @basic_auth.required
 def home():
-  f = os.popen('service fail2ban status')
-  status = f.read()
+  status = fail2banStatus()
   return render_template('index.html', status = status)
-  
+
 @app.route('/start', methods=['GET', 'POST'])
 def start():
   s = os.popen('service fail2ban start')
-  f = os.popen('service fail2ban status')
-  status = f.read()
+  status = fail2banStatus()
   return redirect("/", code=302)
 
-@app.route('/stop', methods=['GET', 'POST'])  
+@app.route('/stop', methods=['GET', 'POST'])
 def stop():
   s = os.popen('service fail2ban stop')
-  f = os.popen('service fail2ban status')
-  status = f.read()
+  status = fail2banStatus()
   return redirect("/", code=302)
-  
+
 ##############################
 # Config page                #
 ##############################
@@ -55,8 +61,8 @@ def config():
   cp.read( r"/etc/fail2ban/jail.conf" )
   services = cp.sections()
   return render_template('config.html', cp = cp, services = services)
-  
-@app.route('/enable/<s>', methods=['GET','POST'])  
+
+@app.route('/enable/<s>', methods=['GET','POST'])
 def enable(s=None):
   cp= ConfigParser.RawConfigParser()
   cp.read(r'/etc/fail2ban/jail.conf')
@@ -66,8 +72,8 @@ def enable(s=None):
   f = os.popen('service fail2ban restart')
   services = cp.sections()
   return redirect("/config", code=302)
-  
-@app.route('/disable/<s>', methods=['GET','POST'])  
+
+@app.route('/disable/<s>', methods=['GET','POST'])
 def disable(s=None):
   cp= ConfigParser.RawConfigParser()
   cp.read(r'/etc/fail2ban/jail.conf')
@@ -77,16 +83,16 @@ def disable(s=None):
   f = os.popen('service fail2ban restart')
   services = cp.sections()
   return redirect("/config", code=302)
-  
-  
+
+
 ##############################
 # Filter page                #
 ##############################
 
-@app.route('/display/<s>', methods=['GET','POST'])  
+@app.route('/display/<s>', methods=['GET','POST'])
 @basic_auth.required
 def filter(s):
-  try:  
+  try:
     filt = s
     cp= ConfigParser.RawConfigParser()
     file = "/etc/fail2ban/filter.d/"+filt+".conf"
@@ -96,7 +102,7 @@ def filter(s):
     return render_template('filter.html', f = "there is a problem with this filter")
   return render_template('filter.html', f = f, service = filt)
 
-  
+
 @app.route('/save/<s>', methods=['GET','POST'])
 def save_filter(s):
   try:
@@ -108,10 +114,10 @@ def save_filter(s):
     h.close()
   except IOError:
     return render_template('filter.html', f = "there is a problem with this filter")
-  return redirect('/config', code=302)	
-  
-  
-  
+  return redirect('/config', code=302)
+
+
+
 ##############################
 # Banned IP                  #
 ##############################
@@ -121,8 +127,8 @@ def save_filter(s):
 def banned():
   f = os.popen("cat /var/log/fail2ban.log | grep Ban | awk '{print $7}'")
   banned = f.read()
-  
-  
+
+
   theFile = open('/var/log/fail2ban.log','r')
   FILE = theFile.readlines()
   theFile.close()
@@ -130,12 +136,12 @@ def banned():
   for line in FILE:
     if ('Ban' in line):
       printList.append(line)
-  return render_template('banned.html', printList = printList)  
-  
-  
+  return render_template('banned.html', printList = printList)
+
+
 ##############################
 # App launcher               #
-############################## 
+##############################
 
 if __name__ == '__main__':
   app.debug = True
