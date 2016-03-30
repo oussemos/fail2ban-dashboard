@@ -52,6 +52,7 @@
 				<th><center>Time</center></th>
 				<th><center>Service</center></th>
 				<th><center>IP Address</center></th>
+				<th><center>Country</center></th>
 		</tr>
         {% for item in printList %}
 				
@@ -63,6 +64,11 @@
 				<td>{{ item.split(" ")[1].split(",")[0] }}</td>
 				<td>{{ item.split(" ")[4] }}</td>
 				<td>{{ item.split(" ")[6] }}</td>
+				{% if getcountry(item.split(" ")[6].rstrip('\n'))['status'] == "success" %}
+				<td>{{ getcountry(item.split(" ")[6].rstrip('\n'))['country'] }}</td>
+				{% else %}
+				<td>{{ getcountry(item.split(" ")[6].rstrip('\n'))['message'] }}</td>
+				{% endif %}
 			</tr>
         
 		{% endfor %}
