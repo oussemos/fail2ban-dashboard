@@ -60,9 +60,9 @@ For more stability, you can deploy the application with Gunicorn.
 
 ![Config](docs/screenshots/config.png)
 
-![Config filter](docs/screenshots/configure_filter.png)
+![Config filter](docs/screenshots/configure_filter.PNG)
 
-![Banned IP](docs/screenshots/get_country.png)
+![Banned IP](docs/screenshots/get_country.PNG)
 
 ### Changelog
 
