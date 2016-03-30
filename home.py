@@ -1,7 +1,9 @@
 from flask import Flask, render_template, redirect, request
 from flask.ext.basicauth import BasicAuth
-import os
+import os, requests
 import sys
+import wget
+import json
 import ConfigParser
 app = Flask(__name__)
 
@@ -122,6 +124,11 @@ def save_filter(s):
 # Banned IP                  #
 ##############################
 
+def getcountry(ip):
+	r = requests.get('http://ip-api.com/json/'+ip)
+	parsed_json=r.json()
+	return parsed_json
+
 @app.route('/banned', methods=['GET', 'POST'])
 @basic_auth.required
 def banned():
@@ -136,7 +143,7 @@ def banned():
   for line in FILE:
     if ('Ban' in line):
       printList.append(line)
-  return render_template('banned.html', printList = printList)
+  return render_template('banned.html', printList = printList, getcountry=getcountry)
 
 
 ##############################
