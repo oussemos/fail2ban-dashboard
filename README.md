@@ -62,7 +62,7 @@ For more stability, you can deploy the application with Gunicorn.
 
 ![Config filter](docs/screenshots/configure_filter.PNG)
 
-![Banned IP](docs/screenshots/get_country.PNG)
+![Banned IP](docs/screenshots/get_country1.PNG)
 
 ### Changelog
 
