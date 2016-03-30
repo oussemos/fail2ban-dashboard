@@ -60,7 +60,9 @@ For more stability, you can deploy the application with Gunicorn.
 
 ![Config](docs/screenshots/config.png)
 
-![Banned IP](docs/screenshots/banned.png)
+![Config filter](docs/screenshots/configure_filter.png)
+
+![Banned IP](docs/screenshots/get_country.png)
 
 ### Changelog
 
@@ -73,6 +75,9 @@ For more stability, you can deploy the application with Gunicorn.
 
 * Fail2ban-dashboard is now compatible with init and systemd, Thanks to @<a href="https://github.com/nocternology">nocternology</a>
 
+(30-03-2016)
+
+* Get the country of blocked IP using this <a href="http://ip-api.com/json/">API</a>
 
 ### Bonus
 
