@@ -1,8 +1,7 @@
 from flask import Flask, render_template, redirect, request
 from flask.ext.basicauth import BasicAuth
-import os, requests
+import requests
 import sys
-import wget
 import json
 import ConfigParser
 app = Flask(__name__)
